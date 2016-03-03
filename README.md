@@ -1,6 +1,6 @@
 ## Keefer
 
-This is a (Yeoman)[http://yeoman.io/] generator that creates a React.js/Redux web application following some Meedan guidelines.
+This is a [Yeoman](http://yeoman.io/) generator that creates a React.js/Redux web application following some Meedan guidelines.
 
 ### Features
 
