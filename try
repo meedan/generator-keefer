@@ -1,0 +1,3 @@
+#!/bin/bash
+# Creates a sample application
+rm -rf test && rm config.yml && ln -s config.yml.example config.yml && npm link && yo keefer

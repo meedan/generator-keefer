@@ -1,0 +1,32 @@
+{
+  "name": "generator-keefer",
+  "version": "1.0.0",
+  "description": "A Yeoman generator for React/Redux client-side applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meedan/generator-keefer.git"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "react",
+    "redux"
+  ],
+  "author": "Meedan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meedan/generator-keefer/issues"
+  },
+  "homepage": "https://github.com/meedan/generator-keefer",
+  "dependencies": {
+    "generator-git-init": "^1.1.2",
+    "yamljs": "^0.2.6",
+    "yeoman-generator": "^0.22.5"
+  },
+  "files": [
+    "app"
+  ]
+}

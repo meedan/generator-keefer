@@ -1,0 +1,8 @@
+{
+  "title": "<%= name %>",
+  "public": "false",
+  "googleAppId": "",
+  "googleClientId": "",
+  "googleCode": "",
+  "googleAccessToken": ""
+}
