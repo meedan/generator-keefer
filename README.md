@@ -2,6 +2,8 @@
 
 This is a [Yeoman](http://yeoman.io/) generator that creates a React.js/Redux web application following some Meedan guidelines.
 
+[Check this video](https://youtu.be/h4HrmPqfrVU) for a demo.
+
 ### Features
 
 * Technologies: React.js, Redux, Gulp, SASS
