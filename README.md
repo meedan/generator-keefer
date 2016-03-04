@@ -11,7 +11,7 @@ This is a [Yeoman](http://yeoman.io/) generator that creates a React.js/Redux we
 * Automated tests: Automated tests infrastructure based on RSpec, Selenium and PhantomJS. Already implements helpers that install the current local version of the Chrome extension and call it from the toolbar.
 * Components: includes components for select field (with auto-complete, multi-selection and that remembers the last choice), message screen, URL embed, confirmation window, close button
 * Platform abstraction: the application has acccess to the current URL and to a local storage engine, regardless the platform
-* Theming: Just write the theme in SASS and it will be compiled the right way depending on the platform
+* Theming: Just write the theme in SASS and it will be compiled the right way depending on the platform... also, just add an SVG logo and it will generate the PNGs in all sizes required by the platform
 * Routing: The root component that is generated is a router, that given a view, renders the right component
 * Git: Creates a local Git repository automatically
 
