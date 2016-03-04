@@ -13,6 +13,7 @@ This is a (Yeoman)[http://yeoman.io/] generator that creates a React.js/Redux we
 * Platform abstraction: the application has acccess to the current URL and to a local storage engine, regardless the platform
 * Theming: Just write the theme in SASS and it will be compiled the right way depending on the platform
 * Routing: The root component that is generated is a router, that given a view, renders the right component
+* Git: Creates a local Git repository automatically
 
 ### How to use this template
 
