@@ -30,7 +30,7 @@ describe 'app' do
       }
     }
     
-    @driver = Selenium::WebDriver.for :chrome, switches: ['--load-extension=../build/extension'], prefs: prefs
+    @driver = Selenium::WebDriver.for :chrome, switches: ['--load-extension=../build/chrome'], prefs: prefs
   end
 
   after :each do

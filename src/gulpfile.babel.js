@@ -30,23 +30,23 @@ gulp.task('replace-webpack-code', () => {
  * Build tasks
  */
 
-gulp.task('config:build:extension', () => {
-  gulp.src('./src/browser/extension/manifest.json.example')
+gulp.task('config:build:chrome', () => {
+  gulp.src('./src/chrome/extension/manifest.json.example')
   .pipe(bump())
-  .pipe(gulp.dest('./src/browser/extension'));
+  .pipe(gulp.dest('./src/chrome/extension'));
   
-  gulp.src('./src/browser/extension/manifest.json.example')
+  gulp.src('./src/chrome/extension/manifest.json.example')
   .pipe(replace('Title', '<%= name %>'))
   .pipe(replace('Description', '<%= description %>'))
   .pipe(rename('manifest.json'))
-  .pipe(gulp.dest('./build/extension'));
+  .pipe(gulp.dest('./build/chrome'));
 
   gulp.src('./src/app/config/config.js.example')
   .pipe(rename('config.js'))
   .pipe(gulp.dest('./src/app/config'));
 });
 
-gulp.task('webpack:build:extension', (callback) => {
+gulp.task('webpack:build:chrome', (callback) => {
   let myConfig = Object.create(webpackConfig);
   webpack(myConfig, (err, stats) => {
     if (err) {
@@ -57,20 +57,20 @@ gulp.task('webpack:build:extension', (callback) => {
   });
 });
 
-gulp.task('views:build:extension', () => {
+gulp.task('views:build:chrome', () => {
   gulp.src([
-    './src/browser/views/*.jade',
-    '!./src/browser/views/devtools.jade'
+    './src/chrome/views/*.jade',
+    '!./src/chrome/views/devtools.jade'
   ])
   .pipe(jade({
     locals: { env: 'prod' }
   }))
-  .pipe(gulp.dest('./build/extension'));
+  .pipe(gulp.dest('./build/chrome'));
 });
 
-gulp.task('copy:build:extension', () => {
-  gulp.src('./src/browser/extension/manifest.json').pipe(gulp.dest('./build/extension'));
-  gulp.src('./src/assets/**/*').pipe(gulp.dest('./build/extension'));
+gulp.task('copy:build:chrome', () => {
+  gulp.src('./src/chrome/extension/manifest.json').pipe(gulp.dest('./build/chrome'));
+  gulp.src('./src/assets/**/*').pipe(gulp.dest('./build/chrome'));
 });
 
-gulp.task('build:extension', ['replace-webpack-code', 'config:build:extension', 'webpack:build:extension', 'views:build:extension', 'copy:build:extension']);
+gulp.task('build:chrome', ['replace-webpack-code', 'config:build:chrome', 'webpack:build:chrome', 'views:build:chrome', 'copy:build:chrome']);

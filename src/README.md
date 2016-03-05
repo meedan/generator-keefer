@@ -5,7 +5,7 @@
 ## Structure
 
 - `src/app`: React cross-browser application.
-- `src/browser`: Sources for the extension and Chrome app.
+- `src/chrome`: Sources for the Google Chrome extension.
 
 ## How to install
 
@@ -17,30 +17,31 @@
 
 ## How to build
 
-* `npm run build:extension`
+* `PLATFORM=chrome npm run build`
 
 ## How to develop
 
 * The theme files (SASS files) are under `src/app/styles`
 * Other development files are under `src/app/`
-* In order to reflect your changes, run `npm run build:extension`
+* In order to reflect your changes, run `PLATFORM=chrome npm run build`
 
 ## How to use
+
+### Chrome extension
 
 * Go to Google Chrome / Chromium
 * Type `chrome://extensions`
 * Hit "Load unpacked extension..."
-* Choose the `build/extension` directory
+* Choose the `build/chrome` directory
 * An icon will be added to your Google Chrome toolbar
 
 ## How to release a new version
 
-* Run `npm run release:extension`, which will bump version number and create zip files under `releases/` directory
+* Run `PLATFORM=chrome npm run release`, which will bump version number and create zip files under `releases/` directory
 
 ## How to publish a new version
 
-* Run `npm run publish:extension`, which will upload and publish the items to Chrome Store
-* Alternatively, you can upload the zip files to Chrome Webstore (developer's dashboard)
+* Run `PLATFORM=chrome npm run publish`, which will upload and publish the item to the internet (e.g., Chrome extension to Chrome store)
 
 ## How to test
 

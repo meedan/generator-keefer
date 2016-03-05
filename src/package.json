@@ -4,15 +4,15 @@
   "description": "<%= description %>",
   "scripts": {
     "start": "gulp",
-    "install": "cp config.json.example config.json && npm rebuild node-sass && npm run build:extension",
+    "install": "cp config.json.example config.json && npm rebuild node-sass && PLATFORM=chrome npm run build",
     "change": "grep -rnI '@Change' * --color",
     "logo": "cd src/assets/img/logo && ./generate.sh && cd ..",
-    "build:extension": "npm run logo && npm run style && BABEL_ENV=production gulp build:extension",
-    "clean": "rm -rf build src/browser/extension/manifest.json src/app/config/config.js",
+    "clean": "rm -rf build src/chrome/extension/manifest.json src/app/config/config.js",
     "dev": "gulp dev",
-    "style": "mkdir -p build/extension/css 2>/dev/null && node-sass src/app/styles/stylesheet.scss --output-style=compressed | postcss --use autoprefixer -o build/extension/css/stylesheet.css",
-    "release:extension": "rm -rf releases/* && npm run style && BABEL_ENV=production gulp build:extension && zip -r releases/extension.zip build/extension",
-    "publish:extension": "./scripts/chrome-store.sh",
+    "style": "mkdir -p build/chrome/css 2>/dev/null && node-sass src/app/styles/stylesheet.scss --output-style=compressed | postcss --use autoprefixer -o build/chrome/css/stylesheet.css",
+    "build": "npm run logo && npm run style && BABEL_ENV=production gulp build:$PLATFORM",
+    "release": "rm -rf releases/* && npm run style && BABEL_ENV=production gulp build:$PLATFORM && zip -r releases/$PLATFORM.zip build/$PLATFORM",
+    "publish": "./scripts/publish-$PLATFORM.sh",
     "test": "cd test && bundle install && rspec && cd .."
   },
   "keywords": [
