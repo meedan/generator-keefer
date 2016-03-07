@@ -2,14 +2,18 @@ import path from 'path';
 import webpack from 'webpack';
 
 export default {
-  entry: {
+  entryChrome: {
     background: [ path.join(__dirname, '../src/chrome/extension/background/index') ],
     window: [ path.join(__dirname, '../src/chrome/window/index') ],
     popup: [ path.join(__dirname, '../src/chrome/extension/popup/index') ],
     inject: [ path.join(__dirname, '../src/chrome/extension/inject/index') ]
   },
+  entryWeb: {
+    index: [ path.join(__dirname, '../src/web/index/index') ]
+  },
   output: {
-    path: path.join(__dirname, '../build/chrome/js'),
+    pathChrome: path.join(__dirname, '../build/chrome/js'),
+    pathWeb: path.join(__dirname, '../build/web/js'),
     filename: '[name].bundle.js',
     chunkFilename: '[id].chunk.js'
   },

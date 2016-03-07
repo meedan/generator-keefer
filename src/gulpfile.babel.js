@@ -30,6 +30,8 @@ gulp.task('replace-webpack-code', () => {
  * Build tasks
  */
 
+// Chrome extension
+
 gulp.task('config:build:chrome', () => {
   gulp.src('./src/chrome/extension/manifest.json.example')
   .pipe(bump())
@@ -47,6 +49,8 @@ gulp.task('config:build:chrome', () => {
 });
 
 gulp.task('webpack:build:chrome', (callback) => {
+  webpackConfig.entry = webpackConfig.entryChrome;
+  webpackConfig.output.path = webpackConfig.output.pathChrome;
   let myConfig = Object.create(webpackConfig);
   webpack(myConfig, (err, stats) => {
     if (err) {
@@ -73,4 +77,43 @@ gulp.task('copy:build:chrome', () => {
   gulp.src('./src/assets/**/*').pipe(gulp.dest('./build/chrome'));
 });
 
+// Web application
+
+gulp.task('config:build:web', () => {
+  gulp.src('./src/app/config/config.js.example')
+  .pipe(rename('config.js'))
+  .pipe(gulp.dest('./src/app/config'));
+});
+
+gulp.task('webpack:build:web', (callback) => {
+  webpackConfig.entry = webpackConfig.entryWeb;
+  webpackConfig.output.path = webpackConfig.output.pathWeb;
+  let myConfig = Object.create(webpackConfig);
+  webpack(myConfig, (err, stats) => {
+    if (err) {
+      throw new gutil.PluginError('webpack:build', err);
+    }
+    gutil.log('[webpack:build]', stats.toString({ colors: true }));
+    callback();
+  });
+});
+
+gulp.task('views:build:web', () => {
+  gulp.src([
+    './src/web/views/*.jade',
+    '!./src/web/views/devtools.jade'
+  ])
+  .pipe(jade({
+    locals: { env: 'prod' }
+  }))
+  .pipe(gulp.dest('./build/web'));
+});
+
+gulp.task('copy:build:web', () => {
+  gulp.src('./src/assets/**/*').pipe(gulp.dest('./build/web'));
+});
+
+// Tasks
+
 gulp.task('build:chrome', ['replace-webpack-code', 'config:build:chrome', 'webpack:build:chrome', 'views:build:chrome', 'copy:build:chrome']);
+gulp.task('build:web', ['replace-webpack-code', 'config:build:web', 'webpack:build:web', 'views:build:web', 'copy:build:web']);

@@ -36,6 +36,7 @@ module.exports = generators.Base.extend({
       'src/assets',
       'src/chrome',
       'src/app',
+      'src/web',
       '.gitignore',
       '.babelrc'
     ];

@@ -8,7 +8,7 @@ class Home extends Component {
       <div>
         <h1><%= name %></h1>
         <p>@Change to add your content here!</p>
-        <p><small>Current URL: <span dangerouslySetInnerHTML={{__html: state.extension.url}}></span></small></p> 
+        <p><small>Current URL: <span id="url" dangerouslySetInnerHTML={{__html: state.extension.url}}></span></small></p> 
       </div>
     );
   }

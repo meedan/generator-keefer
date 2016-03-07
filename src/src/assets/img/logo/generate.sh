@@ -10,3 +10,5 @@ do
 done
 
 convert "128x128.png" "scalable.ico"
+
+convert "16x16.png" "favicon.ico"

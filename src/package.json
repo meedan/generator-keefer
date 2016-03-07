@@ -4,15 +4,15 @@
   "description": "<%= description %>",
   "scripts": {
     "start": "gulp",
-    "install": "cp config.json.example config.json && npm rebuild node-sass && PLATFORM=chrome npm run build",
+    "install": "cp config.json.example config.json && npm rebuild node-sass && PLATFORM=chrome npm run build && PLATFORM=web npm run build",
     "change": "grep -rnI '@Change' * --color",
     "logo": "cd src/assets/img/logo && ./generate.sh && cd ..",
     "clean": "rm -rf build src/chrome/extension/manifest.json src/app/config/config.js",
     "dev": "gulp dev",
-    "style": "mkdir -p build/chrome/css 2>/dev/null && node-sass src/app/styles/stylesheet.scss --output-style=compressed | postcss --use autoprefixer -o build/chrome/css/stylesheet.css",
+    "style": "mkdir -p build/chrome/css build/web/css 2>/dev/null && node-sass src/app/styles/stylesheet.scss --output-style=compressed | postcss --use autoprefixer -o build/chrome/css/stylesheet.css && cp build/chrome/css/stylesheet.css build/web/css/stylesheet.css",
     "build": "npm run logo && npm run style && BABEL_ENV=production gulp build:$PLATFORM",
     "release": "rm -rf releases/* && npm run style && BABEL_ENV=production gulp build:$PLATFORM && zip -r releases/$PLATFORM.zip build/$PLATFORM",
-    "publish": "./scripts/publish-$PLATFORM.sh",
+    "publish": "./scripts/publish-$PLATFORM",
     "test": "cd test && bundle install && rspec && cd .."
   },
   "keywords": [
@@ -73,8 +73,10 @@
     "autoprefixer": "^6.1.1",
     "chrome-storage-local": "^0.1.1",
     "crossmessaging": "0.1.1",
+    "finalhandler": "^0.4.1",
     "gulp-bump": "^1.0.0",
     "http": "0.0.0",
+    "ngrok": "0.1.99",
     "node-sass": "^3.4.2",
     "postcss-cli": "^2.3.2",
     "react": "^0.14.0",
@@ -84,9 +86,10 @@
     "redux": "^3.0.0",
     "redux-form": "^3.1.0",
     "redux-notify": "^0.1.1",
-    "redux-persist": "^1.4.1",
+    "redux-persist": "^2.0.0-rc2",
     "redux-thunk": "^1.0.0",
     "scriptjs": "^2.5.8",
+    "serve-static": "^1.10.2",
     "superagent": "^1.4.0",
     "util": "^0.10.3"
   }
