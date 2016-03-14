@@ -27,7 +27,6 @@ module.exports = generators.Base.extend({
       'LICENSE',
       'scripts',
       'README.md',
-      'build/chrome/.gitkeep',
       'releases/.gitkeep',
       'config.json.example',
       'gulpfile.babel.js',

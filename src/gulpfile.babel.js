@@ -34,6 +34,7 @@ gulp.task('replace-webpack-code', () => {
 // Chrome extension
 
 gulp.task('config:build:chrome', () => {
+  shell.task('mkdir -p build/chrome 2>/dev/null && touch build/chrome/.gitkeep');
   gulp.src('./src/chrome/extension/manifest.json.example')
   .pipe(bump())
   .pipe(gulp.dest('./src/chrome/extension'));
