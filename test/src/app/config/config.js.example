@@ -1,6 +1,0 @@
-var config = {};
-
-// @Change add configurations
-// config.foo = 'bar';
-
-module.exports = config;
