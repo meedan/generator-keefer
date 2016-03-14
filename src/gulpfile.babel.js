@@ -6,6 +6,7 @@ import rename from 'gulp-rename';
 import zip from 'gulp-zip';
 import replace from 'gulp-replace';
 import bump from 'gulp-bump';
+import shell from 'gulp-shell';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import webpackConfig from './webpack/config';
@@ -112,6 +113,12 @@ gulp.task('views:build:web', () => {
 gulp.task('copy:build:web', () => {
   gulp.src('./src/assets/**/*').pipe(gulp.dest('./build/web'));
 });
+
+// Android (tested with Node 4.3.2 (`nvm use 4.3.2`))
+
+gulp.task('build:android', shell.task(
+  'cd src/android && npm install && rm -fr stylesheet.js android/app/src/main/java/com/<%= machine_name %>/modules/share android/app/src/main/java/com/<%= machine_name %>/MainActivity.java index.android.js android/app/src/main/AndroidManifest.xml android/app/src/main/res/mipmap* && react-native android && cp index.js index.android.js && cp AndroidManifest.xml android/app/src/main/ && cp MainActivity.java android/app/src/main/java/com/<%= machine_name %>/ && cp -r share android/app/src/main/java/com/<%= machine_name %>/modules && cp -r ../assets/img/logo/android/* android/app/src/main/res/ && cp ../../build/android/css/stylesheet.js . && react-native run-android && npm start && cd -'
+));
 
 // Tasks
 

@@ -19,6 +19,7 @@ module.exports = generators.Base.extend({
     // Replacements for templates
     var replacements = config;
     replacements.year = new Date().getFullYear();
+    replacements.machine_name = config.name.replace(' ', '').toLowerCase();
 
     // Files that should be copied
     // Prefix the filename with "!" if you don't want it to be treated as a template
@@ -37,6 +38,10 @@ module.exports = generators.Base.extend({
       'src/chrome',
       'src/app',
       'src/web',
+      'src/android',
+      'src/android/.babelrc',
+      'src/android/.flowconfig',
+      'src/android/.watchmanconfig',
       '.gitignore',
       '.babelrc'
     ];
@@ -79,7 +84,7 @@ module.exports = generators.Base.extend({
     console.log('Installing app...');
     this.installDependencies({
       callback: function() {
-        that.spawnCommand('npm', ['run', 'install'])
+        that.spawnCommand('npm', ['run', 'try'])
         .on('close', function () {
 
           // Add new files to Git

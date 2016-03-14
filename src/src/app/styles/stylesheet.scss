@@ -1,38 +1,28 @@
 @charset "utf-8";
 
-@import "react-select";
-@import "normalize";
-@import "confirmation-link";
+// @Change and uncomment the ones you need
+// @import "react-select";
+// @import "confirmation-link";
+// @import "normalize";
+// @import "top-bar";
 
 body {
-  text-align: center;
   margin: auto;
-  font-family: sans-serif;
   width: 500px;
   padding: 50px 10px;
 }
 
-// Top back bar
+text {
+  text-align: center;
+  font-family: sans-serif;
+}
 
-.top-bar {
-  background: #ffffff;
-  width: 100%;
-  height: 40px;
-  margin: 0;
-  padding: 0;
-  border-bottom: 1px solid #333;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+h1, p {
+  text-align: center;
+  font-family: sans-serif;
+}
 
-  a {
-    margin-top: 10px;
-    margin-right: 10px;
-    text-decoration: none;
-    float: right;
-    color: #000;
-    cursor: pointer;
-    font-size: 16px;
-  }
+h1 {
+  font-weight: bold;
+  font-size: 24px;
 }
