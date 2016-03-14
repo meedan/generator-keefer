@@ -7,7 +7,8 @@
   },
   "dependencies": {
     "react-native": "^0.21.0",
-    "react-native-css": "https://github.com/caiosba/react-native-css.git#5af7cbe"
+    "react-native-css": "https://github.com/caiosba/react-native-css.git#5af7cbe",
+    "react-native-share-menu": "^1.1.0"
   },
   "devDependencies": {
     "babel-preset-react": "^6.3.13",

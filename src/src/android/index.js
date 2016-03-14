@@ -4,9 +4,9 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View,
-  NativeModules
+  View
 } from 'react-native';
+import ShareMenu from 'react-native-share-menu';
 var styles = require('./stylesheet.js');
 
 class <%= name %> extends Component {
@@ -19,7 +19,7 @@ class <%= name %> extends Component {
 
   componentWillMount() {
     var that = this;
-    NativeModules.Share.getSharedText((text :string) => {
+    ShareMenu.getSharedText((text :string) => {
       if (text && text.length) {
         that.setState({ url: text });
       }

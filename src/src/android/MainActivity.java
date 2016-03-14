@@ -7,9 +7,7 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.List;
 
-import com.<%= machine_name %>.modules.share.SharePackage;
-
-import android.content.Intent;
+import ca.ios.ba.ShareMenuPackage;
 
 public class MainActivity extends ReactActivity {
 
@@ -37,14 +35,9 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected List<ReactPackage> getPackages() {
-    Intent intent = getIntent();
-    String action = intent.getAction();
-    String type = intent.getType();
-    String inputText = intent.getStringExtra(Intent.EXTRA_TEXT);
-
     return Arrays.<ReactPackage>asList(
       new MainReactPackage(),
-      new SharePackage(inputText)
+      new ShareMenuPackage()
     );
   }
 }
