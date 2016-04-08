@@ -32,14 +32,18 @@ describe 'app' do
     expect(message.text.include?('https://meedan.com/en/')).to be(true)
   end
 
+  def port_open?(port)
+    !system("lsof -i:#{port}", out: '/dev/null')
+  end
+
   # Start a webserver for the web app
   
   before :all do
-    @web = Thread.new { Web.run! }
+    @web = Thread.new { Web.run! } if port_open?(3333)
   end
 
   after :all do
-    Thread.kill(@web)
+    Thread.kill(@web) unless @web.nil?
   end
 
   # Install the Chrome extension
@@ -47,7 +51,7 @@ describe 'app' do
   before :each do
     @config = YAML.load_file('config.yml')
 
-    Selenium::WebDriver::Chrome.driver_path = 'chromedriver'
+    Selenium::WebDriver::Chrome.driver_path = './chromedriver'
   
     prefs = {
       extensions: {
@@ -60,8 +64,16 @@ describe 'app' do
         }
       }
     }
-    
-    @driver = Selenium::WebDriver.for :chrome, switches: ['--load-extension=../build/chrome'], prefs: prefs
+
+    if port_open?(9515)
+      @driver = Selenium::WebDriver.for :chrome, switches: ['--load-extension=../build/chrome'], prefs: prefs
+    else
+      caps = Selenium::WebDriver::Remote::Capabilities.chrome
+      caps['chromeOptions'] = {}
+      caps['chromeOptions']['args'] = ['--load-extension=../build/chrome']
+      caps['chromeOptions']['prefs'] = prefs
+      @driver = Selenium::WebDriver.for :remote, url: 'http://localhost:9515', desired_capabilities: caps
+    end
   end
 
   after :each do
