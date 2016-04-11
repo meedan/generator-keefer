@@ -3,3 +3,5 @@ node_modules
 .*.sw*
 config.yml
 npm-debug.log
+build/*
+!build/.gitkeep

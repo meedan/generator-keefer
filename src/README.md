@@ -6,7 +6,6 @@
 
 * Node.js (tested with version 4.3.2)
 * Inkscape and ImageMagick (to generate the icons)
-* Ngrok (to run the web version publicly)
 * Ruby and RubyGems (to run the tests)
 
 ## Structure
@@ -19,9 +18,25 @@
 ## How to install
 
 * Copy `config.json.example` to `config.json` and define your configurations
+* `npm install react-native react-native-css -g` (only if you want mobile support)
 * `npm install`
 * `npm rebuild node-sass`
-* Or run `npm run try`
+
+### Running on Docker
+
+*Building and running*
+
+* Copy `config.json.example` to `config.json` and define your configurations
+* Execute `./docker/run.sh`
+* Enter the container with `./docker/shell.sh` and compile the code (`PLATFORM=web npm run build`, `PLATFORM=chrome npm run build`, etc.)
+* Still inside the container, run the test with `npm run test` (see at the bottom more information on running tests) 
+
+*Interacting*
+
+* The directories `build` and `releases` are shared between the host and the container - that's where your compiled code will be located
+* The web application will be available locally in port 3333 of the host
+* The web application will be available for the world through Ngrok (check `releases/web.log` for the generated URL)
+* While you run the tests from inside the container using `npm run test`, you can see what's going on by connecting to VNC, on port 5999 and password "keefer" 
 
 ## How to build
 
@@ -62,3 +77,4 @@
 ## How to test
 
 * Run `npm run test` (you need `ruby` and `rubygems`, and need a file `test/config.yml`)
+* In order to test the browser extension, you need to add its id to `test/config.yml`, and to find out the id you need to install the extension in Google Chrome in developer mode, so you'll be able to see the id in `chrome://extensions`

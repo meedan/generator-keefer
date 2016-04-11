@@ -77,7 +77,6 @@
     "finalhandler": "^0.4.1",
     "gulp-bump": "^1.0.0",
     "http": "0.0.0",
-    "ngrok": "0.1.99",
     "node-sass": "^3.4.2",
     "postcss-cli": "^2.3.2",
     "react": "^0.14.0",

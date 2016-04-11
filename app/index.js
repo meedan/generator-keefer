@@ -14,7 +14,7 @@ module.exports = generators.Base.extend({
   writing: function() {
     var config = this.config;
     this.sourceRoot('src');
-    this.destinationRoot(config.snakeName);
+    this.destinationRoot('build/' + config.snakeName);
 
     // Replacements for templates
     var replacements = config;
@@ -41,6 +41,7 @@ module.exports = generators.Base.extend({
       'src/android/.babelrc',
       'src/android/.flowconfig',
       'src/android/.watchmanconfig',
+      'docker',
       '.gitignore',
       '.babelrc'
     ];
@@ -83,20 +84,15 @@ module.exports = generators.Base.extend({
     console.log('Installing app...');
     this.installDependencies({
       callback: function() {
-        that.spawnCommand('npm', ['run', 'try'])
-        .on('close', function () {
+        // Add new files to Git
+        that.spawnCommandSync('cd', ['build/' + that.config.snakeName]);
+        that.spawnCommandSync('git', ['add', '*']);
+        that.spawnCommandSync('git', ['commit', '-a', '-m', 'First compilation']);
+        that.spawnCommandSync('git', ['log']);
+        that.spawnCommandSync('git', ['status']);
 
-          // Add new files to Git
-          that.spawnCommandSync('cd', [that.config.snakeName]);
-          that.spawnCommandSync('git', ['add', '*']);
-          that.spawnCommandSync('git', ['commit', '-a', '-m', 'First compilation']);
-          that.spawnCommandSync('git', ['log']);
-          that.spawnCommandSync('git', ['status']);
-
-          // Finish
-          console.log('Your application was generated! Try it and run the tests! Information about those things are in the README.');
-
-        });
+        // Finish
+        console.log('Your application was generated! Try it and run the tests! Information about those things are in the README.');
       }
     });
   }
