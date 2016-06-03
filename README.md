@@ -65,6 +65,16 @@ All the examples below are available in the `test` directory, which is an exampl
 * Add the specific code to `src/src/<platform>`
 * Implement the test structure (e.g., load the application) at `src/test`
 
+### Troubleshooting
+
+#### OSX Users
+
+Sometimes, `npm` looks for files in a `node_modules` at parent directories. This can lead to version mismatch problems. Fix `npm` to not look for modules inside those directories or simply remove any `node_modules` you have in your home root.
+
+#### Babel
+
+In order to avoid version problems with Babel, remove any `~/.babelrc` file. There is one inside the application already.
+
 ### TODO
 
 * Check the issues on Github

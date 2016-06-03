@@ -18,7 +18,7 @@
 ## How to install
 
 * Copy `config.json.example` to `config.json` and define your configurations
-* `npm install react-native react-native-css -g` (only if you want mobile support)
+* `npm install react-native react-native-css ngrok -g`
 * `npm install`
 * `npm rebuild node-sass`
 
