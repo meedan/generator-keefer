@@ -47,6 +47,7 @@ Just an example of how we can use this generator
 * The theme files (SASS files) are under `src/app/styles`
 * Other development files are under `src/app/`
 * In order to reflect your changes, run `PLATFORM=<chrome|web|android> npm run build`
+* In order to use the Relay features, add the `relay.json` file to `data/` directory
 
 ## How to use
 

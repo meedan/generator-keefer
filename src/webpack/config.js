@@ -39,8 +39,9 @@ export default {
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel'],
-      exclude: /node_modules/
+      loader: ['babel'],
+      exclude: /node_modules/,
+      query: {stage: 0, plugins: ['./src/plugins/babelRelayPlugin.js']}
     }, {
       test: /\.css?$/,
       loaders: ['style', 'raw']

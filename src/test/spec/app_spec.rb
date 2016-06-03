@@ -32,6 +32,16 @@ describe 'app' do
     expect(message.text.include?('https://meedan.com/en/')).to be(true)
   end
 
+  def assert_footer
+    wait = Selenium::WebDriver::Wait.new(timeout: 5000)
+    message = wait.until {
+      element = @driver.find_element(:css, 'address')
+      element if element.displayed?
+    }
+    # Assert that the version prefix is in the address in order to test Relay
+    expect(message.text.include?(' v')).to be(true)
+  end
+
   def port_open?(port)
     !system("lsof -i:#{port}", out: '/dev/null')
   end
@@ -88,6 +98,12 @@ describe 'app' do
       assert_url
     end
 
+    it "should have footer" do
+      @driver.navigate.to 'https://meedan.com/en/'
+      open_extension
+      assert_footer
+    end
+
   end
 
   context "web" do
@@ -96,6 +112,12 @@ describe 'app' do
       @driver.navigate.to 'http://localhost:3333/index.html?url=https://meedan.com/en/'
       sleep 3
       assert_url
+    end
+
+    it "should have footer" do
+      @driver.navigate.to 'http://localhost:3333/index.html?url=https://meedan.com/en/'
+      sleep 3
+      assert_footer
     end
 
   end
