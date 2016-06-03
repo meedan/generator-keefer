@@ -43,7 +43,8 @@ module.exports = generators.Base.extend({
       'src/android/.watchmanconfig',
       'docker',
       '.gitignore',
-      '.babelrc'
+      '.babelrc',
+      'src/plugins'
     ];
 
     for (var i = 0; i < files.length; i++) {
