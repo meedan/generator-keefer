@@ -29,6 +29,7 @@ All the examples below are available in the `test` directory, which is an exampl
 * Routing: The root component that is generated is a router, that given a view, renders the right component
 * Git: Creates a local Git repository automatically
 * Docker: You can run the generator from inside a Docker container and can run and compile the application inside a generated Docker container as well
+* Relay: Can use Relay to connect to GraphQL and show data (automated tests included)
 
 ### How to use this template
 
